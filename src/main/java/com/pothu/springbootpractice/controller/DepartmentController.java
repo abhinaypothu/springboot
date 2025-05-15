@@ -2,6 +2,7 @@ package com.pothu.springbootpractice.controller;
 
 import com.pothu.springbootpractice.entity.Department;
 import com.pothu.springbootpractice.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
     @PostMapping("/add")
-    public Department addDepartment(@RequestBody Department department){
+    public Department addDepartment(@Valid @RequestBody Department department){
         System.out.println(department.toString());
        return departmentService.addDepartment(department);
     }
