@@ -26,6 +26,12 @@ welcome:
   message: Hello world
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 ---
 spring:
   config:
@@ -46,6 +52,11 @@ spring:
 welcome:
   message: Hello QA
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
 ---
@@ -65,6 +76,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 welcome:
   message: Hello Prod

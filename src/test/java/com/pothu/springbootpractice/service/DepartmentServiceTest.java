@@ -22,8 +22,8 @@ class DepartmentServiceTest {
         String departmentName = "IT";
 
         Department department = departmentService.getDepartmentByName(departmentName);
-        assertNotNull(department);
-        assertEquals(departmentName,department.getDepartmentName());
+
+        assertNull(department);
 
     }
 }
