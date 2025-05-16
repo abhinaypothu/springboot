@@ -1,6 +1,15 @@
 server:
   port: 8080
+
 spring:
+  profiles:
+    active: qa
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
   application:
     name: springbootpractice
   datasource:
@@ -15,3 +24,47 @@ spring:
 
 welcome:
   message: Hello world
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: qa
+  application:
+    name: springbootpractice
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: P9th7@1224
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+welcome:
+  message: Hello QA
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: springbootpractice
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: P9th7@1224
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+welcome:
+  message: Hello Prod
