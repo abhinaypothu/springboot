@@ -1,28 +1,36 @@
 package com.pothu.springbootpractice.controller;
 
 import com.pothu.springbootpractice.entity.Department;
+import com.pothu.springbootpractice.error.DepartmentNotFoundException;
 import com.pothu.springbootpractice.service.DepartmentService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
+
+    private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
     @Autowired
     DepartmentService departmentService;
     @PostMapping("/add")
     public Department addDepartment(@Valid @RequestBody Department department){
         System.out.println(department.toString());
-       return departmentService.addDepartment(department);
+        logger.info("addDepartment: {}",department);
+        return departmentService.addDepartment(department);
     }
 
     @GetMapping("/get/{departmentId}")
-    public Department getDepartmentById(@PathVariable("departmentId") long departmentId){
-        return departmentService.getDepartmentById(departmentId);
+    public Department getDepartmentById(@PathVariable("departmentId") long departmentId) throws DepartmentNotFoundException {
+        Department o =  departmentService.getDepartmentById(departmentId);
+        return o;
     }
 
     @GetMapping("/get/all")
